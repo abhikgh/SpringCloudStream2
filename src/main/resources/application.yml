@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    stream:
+      function:
+        definition: producer;processor;consumer
+      bindings:
+        producer-out-0:
+          destination: order-created
+        processor-in-0:
+          destination: order-created
+        processor-out-0:
+          destination: order-updated
+        consumer-in-0:
+          destination: order-updated
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+
+server:
+  port: 8083
